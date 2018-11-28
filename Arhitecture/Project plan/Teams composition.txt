@@ -5,7 +5,7 @@ Morosanu Vlad
 Segmentation:
 
 
-Back End:
+Prediction:
 Bogdan-Ioan Ouatu - ilikehaskell
 Cristian Ninicu - DoubleNy
 Eugen Gavrilovici
