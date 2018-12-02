@@ -1,6 +1,10 @@
 # PlantBreeding
 AI school project
 
+Resources you need:
+https://drive.google.com/drive/folders/1klJY0xkK9WZyQVQO9aGhj0nvawTouaw8?fbclid=IwAR3qv6iZCZl6BYua6WTkX93FHXIwKfcOrleL1B4dsoQ5c5EAcS37elIOBYk
+
+
 Good news, everybody! 
 The project is not very complex, but, to organise ourselves a little, we should:
 
