@@ -4,7 +4,7 @@
 
 import requests, sys, json
 
-proteinName = "dof zinc fingers"
+proteinName = "GO:0000001"
 limit = 5
 
 
@@ -23,4 +23,8 @@ if not r.ok:
 responseBody = r.text
 parsed = json.loads(responseBody)
 
-print(json.dumps(parsed, indent=2, sort_keys=True))
+for result in parsed["results"]:
+  print("Id: " + result["id"])
+  print("- Aspect: " + result["aspect"])
+  print("- Name: " + result["name"] + "\n")
+#  print("- Definition" + result["definition"]["text"])
