@@ -110,8 +110,6 @@ def main():
     first_line = 0
     #for each line
     for line in file_input:
-        if first_line > 2000:
-            break
         if line[0] == ">":
             if(len(protein[str(line.split(' ', 1)[0][1:])]) < 11):
                 continue
@@ -130,9 +128,7 @@ def main():
             first_line += 1
             file_output.write(line.split(' ', 1)[0][1:] + ' ')
 
-            for aa_name in ["phe", "leu", "ser", "tyr", "cys", "trp", "pro", "his", "gln", "arg",
-                            "ile", "thr", "asn", "lys", "val", "ala", "asp", "glu", "gly", "met",
-                            "stop"]: genes[aa_name] = 0
+            orderedGenes.clear()
         else:
             result_list = [line[i:i + 3] for i in range(0, len(line), 3)]
             for i in range(0, len(result_list)):
