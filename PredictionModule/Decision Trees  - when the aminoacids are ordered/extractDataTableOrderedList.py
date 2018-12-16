@@ -99,7 +99,7 @@ orderedGenes = list()
 def main():
 
     file_input = open("input12.txt", "r")
-    file_output = open("output.txt","w")
+    file_output = open("out.txt","w")
     protein = dict()
     if generateTestInput:
         with open('input.csv') as csvfile:
