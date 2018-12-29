@@ -22,7 +22,7 @@ TRAIN_CSV = './data/train.csv'
 
 # Load training set
 train_df = pd.read_csv(TRAIN_CSV)
-for q in ['gene1', 'gene2']:
+for q in ['question1', 'question2']:
     train_df[q + '_n'] = train_df[q]
 
 # Make word2vec embeddings
@@ -36,7 +36,7 @@ train_df, embeddings = make_w2v_embeddings(train_df, embedding_dim=embedding_dim
 validation_size = int(len(train_df) * 0.1)
 training_size = len(train_df) - validation_size
 
-X = train_df[['gene1_n', 'gene2_n']]
+X = train_df[['question1_n', 'question2_n']]
 Y = train_df['is_duplicate']
 
 X_train, X_validation, Y_train, Y_validation = train_test_split(X, Y, test_size=validation_size)

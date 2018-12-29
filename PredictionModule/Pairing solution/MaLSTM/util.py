@@ -71,19 +71,19 @@ def make_w2v_embeddings(df, embedding_dim=300, empty_w2v=False):
     if empty_w2v:
         word2vec = EmptyWord2Vec
     else:
-        word2vec = KeyedVectors.load_word2vec_format("./data/GoogleNews-vectors-negative300.bin.gz", binary=True)
-        # word2vec = gensim.models.word2vec.Word2Vec.load("./data/Quora-Question-Pairs.w2v").wv
+        word2vec = KeyedVectors.load_word2vec_format("./data/codon.bin", binary=True)
+        # word2vec = gensim.models.word2vec.Word2Vec.load("./data/Quora-gene-Pairs.w2v").wv
 
     for index, row in df.iterrows():
         # Print the number of embedded sentences.
         if index != 0 and index % 1000 == 0:
             print("{:,} sentences embedded.".format(index), flush=True)
 
-        # Iterate through the text of both questions of the row
-        for question in ['question1', 'question2']:
+        # Iterate through the text of both genes of the row
+        for gene in ['gene1', 'gene2']:
 
-            q2n = []  # q2n -> question numbers representation
-            for word in text_to_word_list(row[question]):
+            q2n = []  # q2n -> gene numbers representation
+            for word in text_to_word_list(row[gene]):
                 # Check for unwanted words
                 if word in stops:
                     continue
@@ -102,8 +102,8 @@ def make_w2v_embeddings(df, embedding_dim=300, empty_w2v=False):
                 else:
                     q2n.append(vocabs[word])
 
-            # Append question as number representation
-            df.at[index, question + '_n'] = q2n
+            # Append gene as number representation
+            df.at[index, gene + '_n'] = q2n
 
     embeddings = 1 * np.random.randn(len(vocabs) + 1, embedding_dim)  # This will be the embedding matrix
     embeddings[0] = 0  # So that the padding will be ignored
@@ -119,7 +119,7 @@ def make_w2v_embeddings(df, embedding_dim=300, empty_w2v=False):
 
 def split_and_zero_padding(df, max_seq_length):
     # Split to dicts
-    X = {'left': df['question1_n'], 'right': df['question2_n']}
+    X = {'left': df['gene1_n'], 'right': df['gene2_n']}
 
     # Zero padding
     for dataset, side in itertools.product([X], ['left', 'right']):

@@ -11,7 +11,7 @@ TEST_CSV = './data/test.csv'
 
 # Load training set
 test_df = pd.read_csv(TEST_CSV)
-for q in ['gene1', 'gene2']:
+for q in ['question1', 'question2']:
     test_df[q + '_n'] = test_df[q]
 # Make word2vec embeddings
 
