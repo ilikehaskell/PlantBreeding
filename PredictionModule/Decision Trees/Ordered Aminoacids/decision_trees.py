@@ -21,35 +21,27 @@ def getInput(path):
         a[len(a):]=(maximum-len(a))*['0']
     return sequences,results
 
+def getInstances(path):
+    instances=[]
+    for line in open(path):
+        line2=line.strip()
+        elements=line2.split(" ")
+        gene=elements[0]
+        instances.append(list(map(int,elements[1:])))
+    return instances
+
 def evalClassifier(classifier,i,o,cv):
     score=cross_val_score(classifier,i,o,cv=cv)
     print(classifier)
     print('{}-fold'.format(cv))
     print('Cross val score: {}; Score average:{}\n'.format(score,score.mean()))
 
-"""
+
 #Write to file only when training a new classifier  
 
-i,o=getInput("data.txt")
-
-classifier=ExtraTreesClassifier(n_estimators=20)
-classifier=classifier.fit(i,o)
-
-with open('classifier.pkl', 'wb') as f:
-    pickle.dump(classifier, f)
-"""
-
-with open('classifier.pkl', 'rb') as f:
-    classifier=pickle.load(f)
-
-"""
+i,o=getInput("out.txt")
 t=DecisionTreeClassifier()
-t1=RandomForestClassifier(n_estimators=20)
-t2=ExtraTreesClassifier(n_estimators=20)
-t3=AdaBoostClassifier(n_estimators=40)
-evalClassifier(t,i,o,2)
-evalClassifier(t1,i,o,2)
-evalClassifier(t2,i,o,2)
-evalClassifier(t3,i,o,2)
-"""
-
+evalClassifier(t,i,o,4)
+instances=getInstances("out.txt")
+t=t.fit(i,o)
+print(t.predict(instances))
